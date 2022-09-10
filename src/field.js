@@ -5,7 +5,7 @@ export default class Field {
     this.hPos = horizontalPosition;
     this.vPos = verticalPosition;
     this.element = document.createElement("li");
-    this.element.innerText = this.hPos + " " + this.vPos;
+    // this.element.innerText = this.hPos + " " + this.vPos;
     this.createStyles();
     board.appendChild(this.element);
   }
