@@ -1,10 +1,12 @@
 import Field from "./field";
 import {setElementStyles} from "./common";
+import {HORIZONTAL_LINES, VERTICAL_LINES} from "./constants";
 
 export default class Board {
-  constructor() {
-    this.horizontalLines = ["a", "b", "c", "d", "e", "f", "g", "h"];
-    this.verticalLines = [8, 7, 6, 5, 4, 3, 2, 1];
+  constructor(game) {
+    this.game = game;
+    this.horizontalLines = HORIZONTAL_LINES;
+    this.verticalLines = VERTICAL_LINES;
     this.fields = [];
     this.element = null;
     this.createHtmlBoard();
@@ -32,12 +34,8 @@ export default class Board {
   createBoardFields() {
     for (let i = 0; i < this.verticalLines.length; i++) {
       for (let j = 0; j < this.horizontalLines.length; j++) {
-        const field = new Field(this.verticalLines[i], this.horizontalLines[j], this.element);
-        if (i % 2 === 0 && j % 2 === 1 || i % 2 === 1 && j % 2 === 0) {
-          setElementStyles(field.element, {
-            backgroundColor: "#c7c7c7"
-          })
-        }
+        const field = new Field(this.verticalLines[i], this.horizontalLines[j], this);
+        field.renderBackground();
         this.fields.push(field);
       }
     }
@@ -112,7 +110,11 @@ export default class Board {
   }
 
   render() {
-    this.fields.forEach(field => field.renderFigure())
+    this.fields.forEach(field => {
+      field.renderFigure();
+      field.renderBackground();
+      field.setCursor();
+    })
   }
 
 }

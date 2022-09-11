@@ -7,6 +7,7 @@ import Player from "./player";
 export default class Game {
 
   constructor() {
+    this.playerMove = TEAM_COLOR.white;
     this.applyBaseStyles();
     this.start();
   }
@@ -16,7 +17,7 @@ export default class Game {
       new Player(PLAYER_TYPE.player, TEAM_DIRECTION.top, TEAM_COLOR.white),
       new Player(PLAYER_TYPE.pc, TEAM_DIRECTION.bottom, TEAM_COLOR.black)
     ];
-    this.board = new Board();
+    this.board = new Board(this);
     setStartFigures(this.board, this.players);
     this.board.render();
   }
