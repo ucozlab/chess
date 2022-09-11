@@ -111,4 +111,8 @@ export default class Board {
     this.element.prepend(verticalHelpers);
   }
 
+  render() {
+    this.fields.forEach(field => field.renderFigure())
+  }
+
 }
