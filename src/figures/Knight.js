@@ -3,8 +3,8 @@ import {TEAM_COLOR, TEAM_DIRECTION} from "../constants";
 
 export default class Knight extends Figure {
 
-  constructor(position, player) {
-    super(position, player);
+  constructor(position, player, board) {
+    super(position, player, board);
     this.figureId = "knight";
     this.backgroundPosition = player.teamColor === TEAM_COLOR.white ? "60% 0%" : "60% 111%";
   }

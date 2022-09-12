@@ -14,28 +14,28 @@ const setStartFigures = (board, players) => {
       /** PAWNS **/
       const pawnField = board.fields.find(field => field.hPos === letter && field.vPos === pawnVerticalLine);
       const startPawnPosition = {hPos: letter, vPos: pawnVerticalLine};
-      pawnField.figure = new Pawn(startPawnPosition, player);
+      pawnField.figure = new Pawn(startPawnPosition, player, board);
       /** OTHER **/
       const field = board.fields.find(field => field.hPos === letter && field.vPos === mainVerticalLine);
       const startPosition = {hPos: letter, vPos: mainVerticalLine};
       switch (letter) {
         case "a":
         case "h":
-          field.figure = new Rook(startPosition, player);
+          field.figure = new Rook(startPosition, player, board);
           break;
         case "b":
         case "g":
-          field.figure = new Knight(startPosition, player);
+          field.figure = new Knight(startPosition, player, board);
           break;
         case "c":
         case "f":
-          field.figure = new Bishop(startPosition, player);
+          field.figure = new Bishop(startPosition, player, board);
           break;
         case "d":
-          field.figure = new Queen(startPosition, player);
+          field.figure = new Queen(startPosition, player, board);
           break;
         case "e":
-          field.figure = new King(startPosition, player);
+          field.figure = new King(startPosition, player, board);
           break;
         default:
           break;

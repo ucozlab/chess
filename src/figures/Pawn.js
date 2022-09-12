@@ -3,15 +3,15 @@ import {HORIZONTAL_NUMBERS, TEAM_COLOR, TEAM_DIRECTION} from "../constants";
 
 export default class Pawn extends Figure {
 
-  constructor(position, player) {
-    super(position, player);
+  constructor(position, player, board) {
+    super(position, player, board);
     this.figureId = "pawn";
     this.backgroundPosition = player.teamColor === TEAM_COLOR.white ? "100.25% 2%" : "100.25% 112%";
   }
 
   isAvailableMove(field) {
     if (field.hPos !== this.hPos) {
-      if (!field.figure) {
+      if (!field.figure || field.figure.player.teamColor === this.board.game.playerMove) {
         return false
       }
       if (this.player.teamDirection === TEAM_DIRECTION.top) {
@@ -33,19 +33,6 @@ export default class Pawn extends Figure {
       return ((field.vPos - this.vPos) === 1) || (this.vPos === this.startPosition.vPos && ((field.vPos - this.vPos) === 2))
     } else {
       return ((this.vPos - field.vPos) === 1) || (this.vPos === this.startPosition.vPos && ((this.vPos - field.vPos) === 2))
-    }
-  }
-
-  checkForAvailableMovePositions() {
-    let availableMoves = [];
-    if (this.player.teamDirection === TEAM_DIRECTION.top) {
-      // if () {
-      //
-      // }
-      if (this.position.h === this.startPosition.h && this.startPosition.v === this.startPosition.v) {
-
-      }
-      return []
     }
   }
 
